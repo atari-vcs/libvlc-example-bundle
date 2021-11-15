@@ -21,12 +21,12 @@
 #define VIDEOWIDTH 320
 #define VIDEOHEIGHT 240
 
-struct context {
+typedef struct context {
     SDL_Renderer *renderer;
     SDL_Texture *texture;
     SDL_mutex *mutex;
     int n;
-};
+} context;
 
 // VLC prepares to render a video frame.
 static void *lock(void *data, void **p_pixels) {
