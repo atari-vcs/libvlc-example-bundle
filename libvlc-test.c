@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: WTFPL */
-/* 
+/*
  * libSDL and libVLC sample code
  * from https://wiki.videolan.org/LibVLC_SampleCode_SDL/
  */
@@ -9,10 +9,10 @@
 #include <math.h>
 #include <stdlib.h>
 #include <assert.h>
- 
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mutex.h>
- 
+
 #include <vlc/vlc.h>
 
 #define WIDTH 1920
@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
     struct context context;
 
     char const *vlc_argv[] = {
-        "--verbose",
+        "--verbose=2",
         "--no-xlib", // Don't use Xlib.
     };
     int vlc_argc = sizeof(vlc_argv) / sizeof(*vlc_argv);
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
     }
 
     // Initialise libSDL.
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
         printf("Could not initialize SDL: %s.\n", SDL_GetError());
         return EXIT_FAILURE;
     }
@@ -153,6 +153,7 @@ int main(int argc, char *argv[])
     }
 
     m = libvlc_media_new_path(libvlc, argv[1]);
+    libvlc_media_add_option(m, ":avcodec-hw=vaapi");
     mp = libvlc_media_player_new_from_media(m);
     libvlc_media_release(m);
 
@@ -165,10 +166,9 @@ int main(int argc, char *argv[])
         // on any keypress just quit
         while (SDL_PollEvent(&event)) {
             switch (event.type) {
-                case SDL_QUIT:
-                    done = 1;
-                    break;
+            case SDL_QUIT:
                 case SDL_KEYDOWN:
+                case SDL_JOYBUTTONDOWN:
                     done = 1;
                     break;
             }

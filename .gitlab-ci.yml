@@ -1,0 +1,10 @@
+include:
+  - project: 'atari/bundle-ci'
+    file: '/bundle-ci.yml'
+    ref: 'main'
+
+build:
+  tags:
+    - heavyweight
+  script:
+    - make-bundle.sh native-libvlc-example.yaml

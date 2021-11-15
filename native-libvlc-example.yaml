@@ -1,0 +1,24 @@
+Name: Native LibVLC Example
+HomebrewID: NativeLibVLCExample
+Type: Application
+Exec: bin/launch_test.sh res/Big_Buck_Bunny_1080_10s_10MB.mp4
+
+Build:
+  VersionFile: version.txt
+  RequiredPackages:
+    - libsdl2-dev
+    - libidn11-dev
+    - libvdpau-dev
+    - libva-dev
+    - ninja-build
+    - wget
+  BuildCommand: build.sh
+  Executables:
+    - build/libvlc-test
+    - launch_test.sh
+  Libraries:
+    - /usr/lib/vlc/
+  Resources:
+    - Big_Buck_Bunny_1080_10s_10MB.mp4
+  RequiredModules:
+    - mod/vlc.mod
