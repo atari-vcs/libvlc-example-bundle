@@ -103,7 +103,7 @@ int main(int argc, char *argv[]) {
     int vlc_argc = sizeof(vlc_argv) / sizeof(*vlc_argv);
 
     SDL_Event event;
-    int done = 0, action = 0, pause = 0, n = 0;
+    int done = 0, action = 0, pause = 0;
 
     struct context context;
 
