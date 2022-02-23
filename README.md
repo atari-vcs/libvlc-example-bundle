@@ -10,7 +10,7 @@ so, go to
 
   https://atari-vcs:3030/
 
-and select `Upload`. Select the file `native-indy800-example_0.1.0.zip`
+and select `Upload`. Select the file `native-libvlc-example_0.1.0.zip`
 built from this repository. You can then launch this game, like any
 Homebrew title, from the same interface.
 
